@@ -9,7 +9,7 @@ def main():
     print("yeah")
 
     choice = 0
-    while choice !=6:
+    while choice !=7:
         print("""
     Welcome to 'Book It To The Library'!
 Please type in the number corresponding to the choice.
@@ -19,7 +19,8 @@ Please type in the number corresponding to the choice.
         print("3) Add new library")
         print("4) View books")
         print("5) View libraries")
-        print("6) Quit.")
+        print("6) Update visitor information.")
+        print("7) Quit.")
         choice = int(input())
 
         if choice == 1:
@@ -70,6 +71,20 @@ Please type in the number corresponding to the choice.
             for l in all_libraries:
                 print( f"""id:  { l.id }, name:  { l.name }""" )
 
+        elif choice == 6:
+            print("""
+    To update visitor please enter visitor's updated first name, last name, and address in the appropriate inputs.
+            """)
+            id = input("Please enter visitor id. >>>")
+            first_name = input("Please enter first name. >>>")
+            last_name = input("Please enter last name. >>>")
+            address = input("Please enter address. >>>")
+
+            int_id = int(id)
+
+            Visitors.update(int_id, first_name, last_name, address)
+            print(f"""
+    Hello {first_name}! Your information has been updated.""")
 
 if __name__ == "__main__":
     main()
