@@ -2,25 +2,29 @@ from classes.library import Library
 from classes.books import Books
 from classes.visitors import Visitors
 from classes.__init__ import CONN, CURSOR
-
+import time
 
 def main():
 
-    print("yeah")
+    print("""
+        Welcome to 'Book It To The Library'!
+""")
 
     choice = 0
-    while choice !=7:
+    while choice !=9:
+        time.sleep(5)
         print("""
-    Welcome to 'Book It To The Library'!
 Please type in the number corresponding to the choice.
 --------------------------------------------------------""")
-        print("1) Add new book")
+        print("1) Add new book.")
         print("2) New visitor? Let's get you set up :)")
-        print("3) Add new library")
-        print("4) View books")
-        print("5) View libraries")
+        print("3) Add new library.")
+        print("4) View books.")
+        print("5) View libraries.")
         print("6) Update visitor information.")
-        print("7) Quit.")
+        print("7) Update library information.")
+        print("8) Update book information.")
+        print("9) Quit.")
         choice = int(input())
 
         if choice == 1:
@@ -64,7 +68,10 @@ Please type in the number corresponding to the choice.
     -> This library's id is {new_library.id}""")
 
         elif choice == 4:
-            Books.all()
+            print(" id,    title,    author")
+            all_books = Books.all()
+            for b in all_books:
+                print( b )
 
         elif choice == 5:
             all_libraries = list( Library.all() )
@@ -75,16 +82,45 @@ Please type in the number corresponding to the choice.
             print("""
     To update visitor please enter visitor's updated first name, last name, and address in the appropriate inputs.
             """)
-            id = input("Please enter visitor id. >>>")
-            first_name = input("Please enter first name. >>>")
-            last_name = input("Please enter last name. >>>")
-            address = input("Please enter address. >>>")
+            id = input("Please enter the visitor's id you wish to change. >>>")
+            first_name = input("Please enter updated first name. >>>")
+            last_name = input("Please enter updated last name. >>>")
+            address = input("Please enter updated address. >>>")
 
             int_id = int(id)
 
             Visitors.update(int_id, first_name, last_name, address)
             print(f"""
-    Hello {first_name}! Your information has been updated.""")
+    {first_name} {last_name}'s information has been updated.""")
+
+        elif choice == 7:
+            print("""
+    To update library please enter library's updated name and city in the appropriate inputs.
+            """)
+            id = input("Please enter the library's id you wish to change. >>>")
+            name = input("Please enter updated name. >>>")
+            city = input("Please enter updated city. >>>")
+
+            int_id = int(id)
+
+            Library.update(int_id, name, city)
+            print(f"""
+    "{name}" has been updated.""")
+            
+        elif choice == 8:
+            print("""
+    To update book please enter the book's updated title and author in the appropriate inputs.
+            """)
+            id = input("Please enter the book's id you wish to change. >>>")
+            title = input("Please enter updated title. >>>")
+            author = input("Please enter updated author. >>>")
+
+            int_id = int(id)
+
+            Books.update(int_id, title, author)
+            print(f"""
+    "{title}" has been updated.""")
+
 
 if __name__ == "__main__":
     main()
