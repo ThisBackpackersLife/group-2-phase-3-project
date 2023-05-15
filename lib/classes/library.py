@@ -78,6 +78,29 @@ class Library:
             raise Exception( "Name must be a string > 0 characters." )
 
     @classmethod
+    def update( cls, id, name=None, city=None ):
+        library = cls.find_by_id( id )
+        if library:
+            if name is not None:
+                library.name = name
+            if city is not None:
+                library.city = city
+            else:
+                raise Exception( "Attribute must be provided for an update." )
+            
+            sql = f"""
+                UPDATE libraries SET
+                name = "{ library.name }",
+                city = "{ library.city }"
+                WHERE id = { id }
+            """
+            CURSOR.execute( sql )
+            CONN.commit()
+            print( "Library information has been updated successfully!" )
+        else:
+            raise Exception( "Could not find Library with that ID." )
+
+    @classmethod
     def all ( cls ):
         sql = "SELECT * FROM libraries"
 
