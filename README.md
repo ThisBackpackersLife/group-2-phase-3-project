@@ -1,62 +1,15 @@
-# Phase 3 CLI Project Template
+# Book It to the Library 
 
-## Learning Goals
+Book It To The Library was designed to manage visitor, library, and book information in a database. Access information on each book telling the user if a book has been checked out and by who.  
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
-
+## Installation
 ***
+- run `pipenv install`
+- run `pipenv shell`
+- run `python3 lib/cli.py`
 
-## Introduction
+## Features
 
-You now have a basic idea of what constitutes a CLI, but you (understandably!)
-likely don't have the best idea of where to start. Fork and clone this lesson
-for a template for your CLI. Take a look at the directory structure before we
-begin:
-
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── cli.py
-    ├── db
-    │   ├── models.py
-    │   └── seed.py
-    ├── debug.py
-    └── helpers.py
-```
-
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
-
-***
-
-## Where Do I Start?
-
-This project will likely be one of the biggest projects you've undertaken so
-far. Your first task should be creating a Git repository to keep track of your
-work and roll back any undesired changes.
-
-### Removing Existing Git Configuration
-
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
-
-```console
-$ rm -rf .git .canvas
-```
-
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
-
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.canvas`
-contains the metadata to create a Canvas page from your Git repo. You don't have
-the permissions to edit our Canvas course, so it's not worth keeping around.
 
 ### Creating Your Own Git Repo
 

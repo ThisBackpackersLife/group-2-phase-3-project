@@ -1,4 +1,4 @@
-from . import CONN, CURSOR
+from .__init__ import CONN, CURSOR
 
 class Library:
     
@@ -77,7 +77,6 @@ class Library:
         else:
             raise Exception( "Name must be a string > 0 characters." )
 
-
     @classmethod
     def all ( cls ):
         sql = "SELECT * FROM libraries"
@@ -88,5 +87,3 @@ class Library:
     @classmethod
     def db_into_instance( cls, library ):
         return Library( library[1], library[2], library[0] )
-    
-    
