@@ -2,12 +2,13 @@ from classes.library import Library
 from classes.books import Books
 from classes.visitors import Visitors
 
-# import faker from Faker
+from faker import Faker
 
-# faker = Faker()
+faker = Faker()
 
 import ipdb
 
+Visitors.create_table()
 
 
 ipdb.set_trace()
