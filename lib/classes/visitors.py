@@ -1,4 +1,4 @@
-from . import CONN, CURSOR
+from .__init__ import CONN, CURSOR
 
 class Visitors:
     
@@ -63,6 +63,33 @@ class Visitors:
             VALUES( '{ visitor.first_name }', '{ visitor.last_name }', '{ visitor.address }')
         """
         )
+        new_visitor_id = CURSOR.execute( "SELECT last_insert_rowid() FROM visitors" ).fetchone()[0]
+        return cls.find_by_id( new_visitor_id )
+
+    @classmethod
+    def find_by_id( cls, id ):
+        if isinstance( id, int ) and id > 0:
+            sql = f"SELECT * FROM visitors WHERE id = { id }"
+            new_visitor = CURSOR.execute( sql ).fetchone()
+            if new_visitor:
+                return cls.db_into_instance( new_visitor )
+            else:
+                raise Exception( "Could not find Visitor with that ID.")
+        else: 
+            raise Exception( "ID must be an number > 0." )
+        
+    @classmethod 
+    def find_by_name( cls, name ):
+        if isinstance( name, str ) and len( name ) > 0:
+            sql = f"SELECT * FROM visitors WHERE first_name LIKE '{ name }' OR last_name LIKE '{ name }'"
+            visitors = CURSOR.execute( sql ).fetchall()
+            if visitors:
+                return [ cls.db_into_instance( visitor ) for visitor in visitors ]
+            else:
+                raise Exception( "Could not find any visitors with that name." )
+        else:
+            raise Exception( "Last name must be a string > 0 characters.")
+
 
     @classmethod
     def all ( cls ):

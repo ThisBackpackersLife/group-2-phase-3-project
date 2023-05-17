@@ -10,5 +10,8 @@ import ipdb
 
 Visitors.create_table()
 
+for n in range( 0, 5 ):
+    Visitors.create( faker.first_name(), faker.last_name(), faker.address() )
+
 
 ipdb.set_trace()
