@@ -1,4 +1,4 @@
-from .__init__ import CONN, CURSOR
+from . import CONN, CURSOR
 
 
 class Books:
@@ -77,6 +77,7 @@ class Books:
             CURSOR.execute( sql )
             app_id = CURSOR.execute( 'SELECT last_insert_rowid() FROM books' ).fetchone()[0]
             new_app = CURSOR.execute( f'SELECT * FROM books WHERE id = { app_id }' ).fetchone()
+            CONN.commit()
             return new_app
         else :
             raise Exception( 'Could not create book. Check data and try again.' )

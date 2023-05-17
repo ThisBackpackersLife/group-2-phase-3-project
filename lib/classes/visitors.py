@@ -1,4 +1,4 @@
-from .__init__ import CONN, CURSOR
+from . import CONN, CURSOR
 
 class Visitors:
     
@@ -64,6 +64,7 @@ class Visitors:
         """
         )
         new_visitor_id = CURSOR.execute( "SELECT last_insert_rowid() FROM visitors" ).fetchone()[0]
+        CONN.commit()
         return cls.find_by_id( new_visitor_id )
 
     @classmethod

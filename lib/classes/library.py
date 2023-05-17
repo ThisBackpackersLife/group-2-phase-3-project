@@ -1,4 +1,4 @@
-from .__init__ import CONN, CURSOR
+from . import CONN, CURSOR
 
 class Library:
     
@@ -50,6 +50,7 @@ class Library:
         """
         )
         new_library_id = CURSOR.execute( "SELECT last_insert_rowid() FROM libraries" ).fetchone()[0]
+        CONN.commit()
         return cls.find_by_id( new_library_id )
 
     @classmethod
