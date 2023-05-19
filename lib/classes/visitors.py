@@ -77,7 +77,7 @@ class Visitors:
             else:
                 raise Exception( "Could not find Visitor with that ID.")
         else: 
-            raise Exception( "ID must be an number > 0." )
+            raise Exception( "ID must be a number > 0." )
         
     @classmethod 
     def find_by_name( cls, name ):

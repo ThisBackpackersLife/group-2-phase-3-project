@@ -66,9 +66,9 @@ Please type in the number corresponding to the choice.
             Books.all()
 
         elif choice == 5:
-            all_libraries = Library.all()
+            all_libraries = list( Library.all() )
             for l in all_libraries:
-                print(f"""id:  {all_libraries.id} --- name:  {all_libraries.name}""")
+                print( f"""id:  { l.id }, name:  { l.name }""" )
 
 
 if __name__ == "__main__":
