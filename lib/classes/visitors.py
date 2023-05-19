@@ -91,6 +91,31 @@ class Visitors:
         else:
             raise Exception( "Last name must be a string > 0 characters.")
 
+    @classmethod
+    def update( cls, id, first_name=None, last_name=None, address=None ):
+        visitor = cls.find_by_id( id )
+        if visitor:
+            if first_name is not None:
+                visitor.first_name = first_name
+            if last_name is not None:
+                visitor.last_name = last_name
+            if address is not None:
+                visitor.address = address
+            else:
+                raise Exception( "Attribute must be provided for an update." )
+            
+            sql = f"""
+                UPDATE visitors SET
+                first_name = "{ visitor.first_name }",
+                last_name = "{ visitor.last_name }",
+                address = "{ visitor.address }"
+                WHERE id = { id }
+            """
+            CURSOR.execute( sql )
+            CONN.commit()
+            print( "Visitor information has been updated successfully!" )
+        else:
+            raise Exception( "Could not find Visitor with that ID." )
 
     @classmethod
     def all ( cls ):
