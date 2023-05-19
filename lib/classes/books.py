@@ -100,7 +100,7 @@ class Books:
         if book:
             if title is not None:
                 book.title = title
-            elif author is not None:
+            if author is not None:
                 book.author = author
             else:
                 raise Exception( "Attribute must be provided for an update." )
